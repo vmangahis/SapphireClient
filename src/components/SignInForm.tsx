@@ -5,21 +5,41 @@ import {
   Input,
   InputLabel,
 } from "@mui/material";
-import axios from "axios";
 import { useState } from "react";
+import sapphire from "../api/sapphireapi";
+import useAuth from "../hooks/useAuth";
+import { AxiosResponse } from "axios";
+import { useNavigate } from "react-router";
+
+interface AuthResponse {
+  accessToken: string;
+  user: string;
+}
 
 const SignInForm = () => {
+  const { setAuth } = useAuth();
+  const nav = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmission = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    axios
-      .get("https://localhost:7156/api/hunter/")
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    sapphire
+      .post("auth/login", {
+        username: username,
+        password: password,
+      })
+      .then((resp: AxiosResponse<AuthResponse>) => {
+        setAuth({ tk: resp.data.accessToken, name: resp.data.user });
+        nav("/hunters");
+      })
+      .catch((err) => {
+        setError(err);
+        console.log(error);
+      });
   };
 
   return (
