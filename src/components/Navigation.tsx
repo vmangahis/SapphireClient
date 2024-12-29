@@ -6,11 +6,13 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  styled,
   Toolbar,
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, Outlet } from "react-router";
+import { useState } from "react";
 
 const Navigation = () => {
   const sapphirePages: { link: string; pagename: string }[] = [
@@ -21,6 +23,19 @@ const Navigation = () => {
     { link: "/hunters", pagename: "Hunters" },
     { link: "/quests", pagename: "Quests" },
   ];
+
+  const [navElement, setNavElement] = useState<HTMLElement | null>(null);
+  const addNavElement = (e: React.MouseEvent<HTMLElement>) => {
+    setNavElement(e.currentTarget);
+  };
+  const removeNavElement = () => {
+    setNavElement(null);
+  };
+
+  const ButtonNav = styled(Button)({
+    color: "white",
+  });
+
   return (
     <>
       <AppBar position="static">
@@ -47,7 +62,7 @@ const Navigation = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                //onClick={}
+                onClick={addNavElement}
                 color="inherit"
               >
                 <MenuIcon />
@@ -59,19 +74,23 @@ const Navigation = () => {
                   horizontal: "left",
                 }}
                 keepMounted
+                open={Boolean(navElement)}
+                anchorEl={navElement}
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "left",
                 }}
+                onClose={removeNavElement}
                 sx={{ display: { xs: "block", md: "none" } }}
-                open={false}
               >
                 {sapphirePages.map(({ link, pagename }) => {
                   return (
                     <MenuItem key={pagename}>
-                      <Typography>
-                        <NavLink to={`${link}`}>{pagename}</NavLink>
-                      </Typography>
+                      <NavLink to={`${link}`}>
+                        <Typography sx={{ color: "white" }}>
+                          {pagename}
+                        </Typography>
+                      </NavLink>
                     </MenuItem>
                   );
                 })}
@@ -80,8 +99,8 @@ const Navigation = () => {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {sapphirePages.map(({ link, pagename }) => {
                 return (
-                  <NavLink to={link}>
-                    <Button sx={{ color: "white" }}>{pagename}</Button>
+                  <NavLink to={link} key={pagename}>
+                    <ButtonNav>{pagename}</ButtonNav>
                   </NavLink>
                 );
               })}
@@ -104,6 +123,10 @@ const Navigation = () => {
             >
               Sapphire
             </Typography>
+
+            <NavLink to="/login">
+              <ButtonNav>Login</ButtonNav>
+            </NavLink>
           </Toolbar>
         </Container>
       </AppBar>

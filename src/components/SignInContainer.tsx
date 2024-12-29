@@ -5,7 +5,6 @@ const SignInContainer = () => {
   return (
     <Box
       sx={{
-        bgcolor: "#0e1215",
         height: "100vh",
       }}
     >
