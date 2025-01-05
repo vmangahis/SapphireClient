@@ -7,6 +7,8 @@ import AuthorizedView from "./components/AuthorizedView";
 import PersistAuth from "./components/PersistAuth";
 import Navigation from "./components/Navigation";
 import Quests from "./components/Quests";
+import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   const dark = createTheme({
@@ -26,6 +28,7 @@ function App() {
           <Route index path="/" element={<Home />} />
           <Route path="/hunters" element={<Hunters />} />
           <Route path="/quests" element={<Quests />} />
+          <Route element={<Footer />} />
         </Route>
         <Route path="/login" element={<SignInContainer />} />
       </Routes>

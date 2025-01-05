@@ -12,10 +12,13 @@ const HeroSection = () => {
     },
   });
   return (
-    <Container maxWidth="lg" sx={{ py: 5 }}>
+    <Container maxWidth="lg" sx={{ py: 10 }}>
       {/* for type */}
       <Box>
-        <Typography variant="h1" align="center">
+        <Typography
+          sx={{ typography: { md: "h2", xs: "h4", sm: "h3" } }}
+          align="center"
+        >
           Explore. Adventure. Discover.
         </Typography>
       </Box>

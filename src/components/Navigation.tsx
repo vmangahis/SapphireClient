@@ -38,8 +38,8 @@ const Navigation = () => {
 
   return (
     <>
-      <AppBar position="static">
-        <Container maxWidth="lg">
+      <AppBar position="sticky">
+        <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
               variant="h6"
@@ -106,12 +106,11 @@ const Navigation = () => {
               })}
             </Box>
             <Typography
-              variant="h5"
               noWrap
+              variant="h5"
               component="a"
               href="#app-bar-with-responsive-menu"
               sx={{
-                mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",

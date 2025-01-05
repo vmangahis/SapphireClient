@@ -34,6 +34,7 @@ const SignInForm = () => {
       })
       .then((resp: AxiosResponse<AuthResponse>) => {
         setAuth({ tk: resp.data.accessToken, name: resp.data.user });
+        localStorage.setItem("hello world", "te");
         nav("/hunters");
       })
       .catch((err) => {
