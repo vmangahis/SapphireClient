@@ -9,6 +9,7 @@ const useAxiosInterceptor = () => {
   useEffect(() => {
     const requestIntercept = axiosIntercept.interceptors.request.use(
       (conf) => {
+        debugger;
         if (!conf.headers["Authorization"]) {
           conf.headers["Authorization"] = `Bearer ${auth?.tk}`;
         }
