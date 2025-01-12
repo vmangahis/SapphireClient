@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 const AuthorizedView = () => {
   const { auth } = useAuth();
   const loc = useLocation();
-  return auth?.name ? (
+  return auth?.tk ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: loc }} replace />

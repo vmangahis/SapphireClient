@@ -24,11 +24,11 @@ const Footer = () => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        spacing={5}
+        spacing={3}
       >
         <Box>
           <Typography
-            variant="h2"
+            variant="h4"
             noWrap
             component="a"
             textAlign="center"
@@ -45,9 +45,12 @@ const Footer = () => {
         </Box>
         <Box>
           <List>
-            <ListItem>Hunters</ListItem>
-            <ListItem>Quest</ListItem>
-            <ListItem></ListItem>
+            <ListItem component={NavLink} to={"/hunters"}>
+              <Typography variant="h5">Hunters</Typography>
+            </ListItem>
+            <ListItem component={NavLink} to={"/quests"}>
+              <Typography variant="h5">Quest</Typography>
+            </ListItem>
           </List>
         </Box>
         <Box>

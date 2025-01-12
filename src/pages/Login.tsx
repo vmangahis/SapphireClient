@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import SignInContainer from "../components/SignInContainer";
 
-const Page = () => {
+const Login = () => {
   return (
     <Container>
       <SignInContainer />
@@ -9,4 +9,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Login;

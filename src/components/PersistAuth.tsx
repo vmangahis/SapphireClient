@@ -19,7 +19,7 @@ const PersistAuth = () => {
         setLoading(false);
       }
     };
-    !auth?.name ? refreshToken() : setLoading(false);
+    !auth?.tk ? refreshToken() : setLoading(false);
   }, []);
 
   useEffect(() => {

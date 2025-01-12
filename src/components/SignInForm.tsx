@@ -6,7 +6,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import { useState } from "react";
-import sapphire from "../api/sapphireapi";
+import { axiosIntercept } from "../api/sapphireapi";
 import useAuth from "../hooks/useAuth";
 import { AxiosResponse } from "axios";
 import { useNavigate } from "react-router";
@@ -27,15 +27,15 @@ const SignInForm = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    sapphire
+    axiosIntercept
       .post("auth/login", {
         username: username,
         password: password,
       })
       .then((resp: AxiosResponse<AuthResponse>) => {
+        console.log(resp);
         setAuth({ tk: resp.data.accessToken, name: resp.data.user });
-        localStorage.setItem("hello world", "te");
-        nav("/hunters");
+        nav("/");
       })
       .catch((err) => {
         setError(err);

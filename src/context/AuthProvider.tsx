@@ -11,8 +11,8 @@ interface Props {
 }
 
 interface Auth {
-  name?: string;
-  tk?: string;
+  name: string | null;
+  tk: string | null;
 }
 
 interface AuthContextType {
@@ -28,7 +28,10 @@ const IAuthContextState = {
 const AuthContext = createContext<AuthContextType>(IAuthContextState);
 
 export const AuthProvider = ({ children }: Props) => {
-  const [auth, setAuth] = useState<Auth | null>(null);
+  const [auth, setAuth] = useState<Auth | null>({
+    name: null,
+    tk: null,
+  });
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
       {children}

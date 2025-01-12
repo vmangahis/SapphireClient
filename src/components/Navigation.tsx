@@ -13,8 +13,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, Outlet } from "react-router";
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Navigation = () => {
+  const { auth } = useAuth();
   const sapphirePages: { link: string; pagename: string }[] = [
     {
       link: "/",
@@ -123,9 +125,13 @@ const Navigation = () => {
               Sapphire
             </Typography>
 
-            <NavLink to="/login">
-              <ButtonNav>Login</ButtonNav>
-            </NavLink>
+            {auth?.tk ? (
+              <p>{auth.name}</p>
+            ) : (
+              <NavLink to="/login">
+                <ButtonNav>Login</ButtonNav>
+              </NavLink>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
