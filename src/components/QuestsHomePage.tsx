@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid2";
 import AccessibilityNewOutlinedIcon from "@mui/icons-material/AccessibilityNewOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-const Quests = () => {
+const QuestsHomePage = () => {
   return (
     <Container maxWidth="lg" sx={{ p: 4 }}>
       <Grid
@@ -82,4 +82,4 @@ const Quests = () => {
   );
 };
 
-export default Quests;
+export default QuestsHomePage;
