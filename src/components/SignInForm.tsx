@@ -14,6 +14,7 @@ import { useNavigate } from "react-router";
 interface AuthResponse {
   accessToken: string;
   user: string;
+  user_avatar: string;
 }
 
 const SignInForm = () => {
@@ -36,7 +37,13 @@ const SignInForm = () => {
       })
       .then((resp: AxiosResponse<AuthResponse>) => {
         console.log(resp);
-        setAuth({ tk: resp.data.accessToken, name: resp.data.user });
+        setAuth({
+          tk: resp.data.accessToken,
+          name: resp.data.user,
+          user_avatar: resp.data.user_avatar
+            ? resp.data.user_avatar
+            : "https://i.pravatar.cc/300",
+        });
         nav("/");
       })
       .catch((err) => {

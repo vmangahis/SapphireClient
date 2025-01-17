@@ -11,8 +11,9 @@ interface Props {
 }
 
 interface Auth {
-  name: string | null;
+  name: string | undefined;
   tk: string | null;
+  user_avatar: string | undefined;
 }
 
 interface AuthContextType {
@@ -29,8 +30,9 @@ const AuthContext = createContext<AuthContextType>(IAuthContextState);
 
 export const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = useState<Auth | null>({
-    name: null,
+    name: undefined,
     tk: null,
+    user_avatar: undefined,
   });
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

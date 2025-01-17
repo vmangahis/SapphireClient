@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
@@ -9,6 +10,7 @@ import {
   styled,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, Outlet } from "react-router";
@@ -17,6 +19,7 @@ import useAuth from "../hooks/useAuth";
 
 const Navigation = () => {
   const { auth } = useAuth();
+  const mobileSize = useMediaQuery("(min-width:600px)");
   const sapphirePages: { link: string; pagename: string }[] = [
     {
       link: "/",
@@ -126,7 +129,13 @@ const Navigation = () => {
             </Typography>
 
             {auth?.tk ? (
-              <p>{auth.name}</p>
+              mobileSize ? (
+                <Typography variant="subtitle1">{auth.name}</Typography>
+              ) : (
+                <IconButton>
+                  <Avatar alt={auth.name} src={auth.user_avatar} />
+                </IconButton>
+              )
             ) : (
               <NavLink to="/login">
                 <ButtonNav>Login</ButtonNav>
