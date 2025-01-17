@@ -22,11 +22,13 @@ const SignInForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [disableButton, setDisableButton] = useState(false);
 
   const handleSubmission = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    setDisableButton(true);
     axiosIntercept
       .post("auth/login", {
         username: username,
@@ -40,6 +42,9 @@ const SignInForm = () => {
       .catch((err) => {
         setError(err);
         console.log(error);
+      })
+      .finally(() => {
+        setDisableButton(false);
       });
   };
 
@@ -74,6 +79,8 @@ const SignInForm = () => {
       <FormControl>
         <Button
           type="submit"
+          variant="outlined"
+          disabled={disableButton}
           onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
             handleSubmission(e)
           }
