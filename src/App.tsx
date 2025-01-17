@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import SignInContainer from "./components/SignInContainer";
 import AuthorizedView from "./components/AuthorizedView";
 import PersistAuth from "./components/PersistAuth";
-import Quests from "./components/Quests";
+import Quests from "./components/QuestsHomePage";
 import "./App.css";
 import Layout from "./components/Layout";
 
