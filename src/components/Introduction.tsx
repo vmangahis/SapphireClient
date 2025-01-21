@@ -69,7 +69,7 @@ const QuestsHomePage = () => {
             </List>
           </Grid>
           <Grid>
-            <Button>Get Started</Button>
+            <Button variant="contained">Find quests</Button>
           </Grid>
         </Grid>
         <Grid
@@ -142,7 +142,7 @@ const QuestsHomePage = () => {
             </List>
           </Grid>
           <Grid>
-            <Button>Get Started</Button>
+            <Button variant="contained">Post Quests</Button>
           </Grid>
         </Grid>
       </Grid>

@@ -2,7 +2,18 @@ import { Box, Container, Typography } from "@mui/material";
 
 const HeroSection = () => {
   return (
-    <Container maxWidth="lg" sx={{ py: 10 }}>
+    <Container
+      maxWidth={false}
+      sx={{
+        p: 20,
+        backgroundImage:
+          "url('https://res.cloudinary.com/dg1bym3ax/image/upload/v1737445302/sapphire-client/wilds-wallpaper-v0-ii61sry7705c1_ce7mij.webp')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "500px",
+        backgroundPosition: "center",
+      }}
+    >
       {/* for type */}
       <Box>
         <Typography

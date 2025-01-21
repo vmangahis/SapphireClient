@@ -8,11 +8,15 @@ import PersistAuth from "./components/PersistAuth";
 import Quests from "./components/Introduction";
 import "./App.css";
 import Layout from "./components/Layout";
+import { brown, purple } from "@mui/material/colors";
 
 function App() {
   const dark = createTheme({
     palette: {
       mode: "light",
+      primary: {
+        main: brown[500],
+      },
     },
   });
   return (
