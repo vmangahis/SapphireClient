@@ -9,7 +9,6 @@ import Quests from "./components/Introduction";
 import "./App.css";
 import Layout from "./components/Layout";
 import { brown } from "@mui/material/colors";
-import LoadingComponent from "./components/LoadingComponent";
 
 function App() {
   const dark = createTheme({

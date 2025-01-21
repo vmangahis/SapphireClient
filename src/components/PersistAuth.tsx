@@ -2,7 +2,6 @@ import { Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useRefresh from "../hooks/useRefresh";
 import { useEffect, useState } from "react";
-import LoadingComponent from "./LoadingComponent";
 
 const PersistAuth = () => {
   const { auth } = useAuth();
@@ -23,7 +22,7 @@ const PersistAuth = () => {
     !auth?.tk ? refreshToken() : setLoading(false);
   }, []);
 
-  return <> {loading ? <LoadingComponent /> : <Outlet />}</>;
+  return <> {loading ? <p>test</p> : <Outlet />}</>;
 };
 
 export default PersistAuth;
