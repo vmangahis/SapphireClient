@@ -1,5 +1,5 @@
 import HeroSection from "../components/HeroSection";
-import QuestsHomePage from "../components/QuestsHomePage";
+import QuestsHomePage from "../components/Introduction";
 
 const Home = () => {
   return (

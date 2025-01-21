@@ -43,7 +43,7 @@ const Navigation = () => {
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" sx={{}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
