@@ -9,6 +9,7 @@ import Quests from "./components/Introduction";
 import "./App.css";
 import Layout from "./components/Layout";
 import { brown } from "@mui/material/colors";
+import SplashScreen from "./components/SplashScreen";
 
 function App() {
   const dark = createTheme({
@@ -20,6 +21,9 @@ function App() {
       primary: {
         main: brown[500],
       },
+      secondary: {
+        main: brown[900],
+      },
     },
   });
   return (
@@ -27,19 +31,21 @@ function App() {
       <CssBaseline />
 
       <Routes>
-        <Route element={<Layout />}>
-          <Route element={<PersistAuth />}>
-            <Route element={<AuthorizedView />}>
-              <Route path="/hunters" element={<Hunters />} />
+        <Route element={<SplashScreen />}>
+          <Route element={<Layout />}>
+            <Route element={<PersistAuth />}>
+              <Route element={<AuthorizedView />}>
+                <Route path="/hunters" element={<Hunters />} />
+              </Route>
+              <Route element={<AuthorizedView />}>
+                <Route path="/quests" element={<Quests />} />
+              </Route>
+              <Route index path="/" element={<Home />} />
             </Route>
-            <Route element={<AuthorizedView />}>
-              <Route path="/quests" element={<Quests />} />
-            </Route>
-            <Route index path="/" element={<Home />} />
           </Route>
-        </Route>
 
-        <Route path="/login" element={<SignInContainer />} />
+          <Route path="/login" element={<SignInContainer />} />
+        </Route>
       </Routes>
     </ThemeProvider>
   );
