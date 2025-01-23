@@ -9,12 +9,21 @@ const SplashScreen = () => {
         sx={{
           position: "absolute",
           width: "100%",
-          height: "100%",
+          height: "100vh",
           backgroundColor: theme.palette.primary.main,
           zIndex: "modal",
         }}
       >
-        <CircularProgress color="secondary" />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            height: "100%",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress color="secondary" />
+        </Box>
       </Box>
       <Outlet />
     </>
