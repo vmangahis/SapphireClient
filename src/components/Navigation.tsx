@@ -4,22 +4,26 @@ import {
   Box,
   Button,
   Container,
+  Drawer,
   IconButton,
-  Menu,
-  MenuItem,
   styled,
   Toolbar,
   Typography,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink, Outlet } from "react-router";
-import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import useNavMenu from "../hooks/useNavMenu";
+import DrawerNavMobile from "./DrawerNavMobile";
 
 const Navigation = () => {
   const { auth } = useAuth();
+  const { toggleDrawer, navMenu } = useNavMenu();
+  const tm = useTheme();
   const mobileSize = useMediaQuery("(min-width:600px)");
+
   const sapphirePages: { link: string; pagename: string }[] = [
     {
       link: "/",
@@ -28,14 +32,6 @@ const Navigation = () => {
     { link: "/hunters", pagename: "Hunters" },
     { link: "/quests", pagename: "Quests" },
   ];
-
-  const [navElement, setNavElement] = useState<HTMLElement | null>(null);
-  const addNavElement = (e: React.MouseEvent<HTMLElement>) => {
-    setNavElement(e.currentTarget);
-  };
-  const removeNavElement = () => {
-    setNavElement(null);
-  };
 
   const ButtonNav = styled(Button)({
     color: "white",
@@ -67,39 +63,22 @@ const Navigation = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={addNavElement}
+                onClick={toggleDrawer(!navMenu)}
                 color="inherit"
               >
                 <MenuIcon />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+              <Drawer
+                PaperProps={{
+                  sx: {
+                    backgroundColor: tm.palette.primary.main,
+                  },
                 }}
-                keepMounted
-                open={Boolean(navElement)}
-                anchorEl={navElement}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                onClose={removeNavElement}
-                sx={{ display: { xs: "block", md: "none" } }}
+                open={navMenu}
+                onClose={toggleDrawer(false)}
               >
-                {sapphirePages.map(({ link, pagename }) => {
-                  return (
-                    <MenuItem key={pagename}>
-                      <NavLink to={`${link}`}>
-                        <Typography sx={{ color: "white" }}>
-                          {pagename}
-                        </Typography>
-                      </NavLink>
-                    </MenuItem>
-                  );
-                })}
-              </Menu>
+                <DrawerNavMobile />
+              </Drawer>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {sapphirePages.map(({ link, pagename }) => {
