@@ -14,7 +14,10 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
   const FooterNav = styled(NavLink)({
-    color: "black",
+    color: "white",
+  });
+  const FooterLink = styled(Typography)({
+    color: "white",
   });
   const theme = useTheme();
   return (
@@ -36,7 +39,7 @@ const Footer = () => {
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              color: "inherit",
+              color: "white",
               textDecoration: "none",
             }}
           >
@@ -46,10 +49,10 @@ const Footer = () => {
         <Box>
           <List>
             <ListItem component={NavLink} to={"/hunters"}>
-              <Typography variant="h5">Hunters</Typography>
+              <FooterLink variant="h5">Hunters</FooterLink>
             </ListItem>
             <ListItem component={NavLink} to={"/quests"}>
-              <Typography variant="h5">Quest</Typography>
+              <FooterLink variant="h5">Quest</FooterLink>
             </ListItem>
           </List>
         </Box>
