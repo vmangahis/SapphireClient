@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ListItemIcon,
+  ListItemText,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
@@ -16,7 +17,7 @@ import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import GroupsIcon from "@mui/icons-material/Groups";
 const QuestsHomePage = () => {
   return (
-    <Container maxWidth="lg" sx={{ p: 10 }}>
+    <Container maxWidth="lg" sx={{ p: 1 }}>
       <Grid
         container
         columns={2}
@@ -41,33 +42,46 @@ const QuestsHomePage = () => {
               Accept quests posted by the Guild
             </Typography>
           </Grid>
-          {/* <Typography></Typography> */}
-          <Grid>
-            <List>
-              <ListItem>
-                <ListItemIcon>
-                  <AccessibilityNewOutlinedIcon />
-                </ListItemIcon>
+
+          <List
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+          >
+            <ListItem>
+              <ListItemIcon>
+                <AccessibilityNewOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText>
                 <Typography>Assist other hunters currently hunting.</Typography>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <LanguageOutlinedIcon />
-                </ListItemIcon>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <LanguageOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText>
                 <Typography>
                   Connect with clients looking for hunters.
                 </Typography>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <ExploreOutlinedIcon />
-                </ListItemIcon>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <ExploreOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText>
                 <Typography>
                   Explore with the clients and Guild handlers.
                 </Typography>
-              </ListItem>
-            </List>
-          </Grid>
+              </ListItemText>
+            </ListItem>
+          </List>
+
           <Grid>
             <Button variant="contained">Find quests</Button>
           </Grid>
@@ -113,34 +127,38 @@ const QuestsHomePage = () => {
               Start quests for hunters
             </Typography>
           </Grid>
-          <Grid>
-            <List>
-              <ListItem>
-                <ListItemIcon>
-                  <PostAddIcon />
-                </ListItemIcon>
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <PostAddIcon />
+              </ListItemIcon>
+              <ListItemText>
                 <Typography>
                   Post quests and start various adventures.
                 </Typography>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <PersonSearchIcon />
-                </ListItemIcon>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PersonSearchIcon />
+              </ListItemIcon>
+              <ListItemText>
                 <Typography>
                   Search and invite hunters to your posted quests.
                 </Typography>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <GroupsIcon />
-                </ListItemIcon>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <GroupsIcon />
+              </ListItemIcon>
+              <ListItemText>
                 <Typography>
                   Connect with hunters and explore adventures together.
                 </Typography>
-              </ListItem>
-            </List>
-          </Grid>
+              </ListItemText>
+            </ListItem>
+          </List>
           <Grid>
             <Button variant="contained">Post Quests</Button>
           </Grid>
