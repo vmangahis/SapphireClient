@@ -12,12 +12,17 @@ const PersistAuth = () => {
 
   useEffect(() => {
     const refreshToken = async () => {
+      let setLoadingTimeOut = () => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
+      };
       try {
         await refresh();
       } catch (err) {
         console.error(err);
       } finally {
-        setLoading(false);
+        setLoadingTimeOut();
       }
     };
     !auth?.tk ? refreshToken() : setLoading(false);
@@ -26,7 +31,7 @@ const PersistAuth = () => {
   return (
     <>
       {loading ? (
-        <SplashScreen />
+        <SplashScreen appLoad={loading} />
       ) : (
         <>
           <Outlet />
