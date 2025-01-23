@@ -1,6 +1,5 @@
 import { Box, CircularProgress, Collapse, Fade, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router";
 
 const SplashScreen = () => {
   const [appLoading, setAppLoading] = useState(true);
@@ -8,7 +7,7 @@ const SplashScreen = () => {
   useEffect(() => {
     let removeAppLoading = setTimeout(() => {
       setAppLoading((prev) => !prev);
-    }, 5000);
+    }, 2500);
     return () => {
       clearTimeout(removeAppLoading);
     };
@@ -18,8 +17,10 @@ const SplashScreen = () => {
     <Collapse orientation="horizontal" in={appLoading}>
       <Box
         sx={{
-          width: "100vw",
-          height: "100vh",
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          zIndex: "modal",
           backgroundColor: theme.palette.primary.main,
         }}
       >
@@ -61,7 +62,6 @@ const SplashScreen = () => {
           </Box>
         </Box>
       </Collapse>
-      <Outlet />
     </>
   );
 };
