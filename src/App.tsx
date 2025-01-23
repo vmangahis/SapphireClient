@@ -12,10 +12,6 @@ import { brown } from "@mui/material/colors";
 
 function App() {
   const dark = createTheme({
-    zIndex: {
-      appBar: 1250,
-      modal: 1251,
-    },
     palette: {
       primary: {
         main: brown[500],
