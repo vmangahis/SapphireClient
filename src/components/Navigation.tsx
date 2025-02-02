@@ -17,6 +17,7 @@ import { NavLink, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useNavMenu from "../hooks/useNavMenu";
 import DrawerNavMobile from "./DrawerNavMobile";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const Navigation = () => {
   const { auth } = useAuth();
@@ -109,7 +110,14 @@ const Navigation = () => {
 
             {auth?.tk ? (
               mobileSize ? (
-                <Typography variant="subtitle1">{auth.name}</Typography>
+                <Button sx={{ color: "white" }}>
+                  {/* <Typography variant="subtitle1">{auth.name}</Typography> */}
+                  <IconButton>
+                    <Avatar alt={auth.name} src={auth.user_avatar} />
+                  </IconButton>
+                  {auth.name}
+                  <KeyboardArrowDownIcon />
+                </Button>
               ) : (
                 <IconButton>
                   <Avatar alt={auth.name} src={auth.user_avatar} />
