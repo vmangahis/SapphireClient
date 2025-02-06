@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   Drawer,
   IconButton,
   Menu,
@@ -37,6 +38,13 @@ const Navigation = () => {
   const handleCloseProfileMenu = () => {
     setProfileMenuNav(null);
   };
+
+  const profilePages: { link: string; pagename: string }[] = [
+    {
+      link: "/profile",
+      pagename: "Profile",
+    },
+  ];
 
   const sapphirePages: { link: string; pagename: string }[] = [
     {
@@ -152,16 +160,43 @@ const Navigation = () => {
                     }}
                     open={Boolean(profileMenuNav)}
                     onClose={handleCloseProfileMenu}
+                    slotProps={{
+                      paper: {
+                        sx: {
+                          backgroundColor: tm.palette.primary.main,
+                          p: 2,
+                        },
+                      },
+                    }}
                   >
-                    {sapphirePages.map((e) => {
+                    {profilePages.map((e) => {
                       return (
-                        <MenuItem key={e.pagename}>
-                          <Typography sx={{ textAlign: "center" }}>
+                        <MenuItem
+                          key={e.pagename}
+                          sx={{ justifyContent: "center" }}
+                        >
+                          <Typography
+                            sx={{ color: "white", textAlign: "center" }}
+                          >
                             {e.pagename}
                           </Typography>
                         </MenuItem>
                       );
                     })}
+                    <Divider sx={{ bgcolor: "white", opacity: 0.5 }} />
+
+                    <MenuItem
+                      sx={{ pointerEvents: "none", justifyContent: "center" }}
+                    >
+                      <Typography
+                        sx={{
+                          color: "white",
+                          textAlign: "center",
+                        }}
+                      >
+                        Your Characters
+                      </Typography>
+                    </MenuItem>
                   </Menu>
                 </Box>
               ) : (
@@ -187,7 +222,7 @@ const Navigation = () => {
                       horizontal: "right",
                     }}
                   >
-                    {sapphirePages.map((e) => {
+                    {profilePages.map((e) => {
                       return (
                         <MenuItem key={e.pagename}>
                           <Typography>{e.pagename}</Typography>
