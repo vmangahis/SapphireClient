@@ -6,8 +6,11 @@ import {
   Container,
   Drawer,
   IconButton,
+  Menu,
+  MenuItem,
   styled,
   Toolbar,
+  Tooltip,
   Typography,
   useMediaQuery,
   useTheme,
@@ -18,12 +21,22 @@ import useAuth from "../hooks/useAuth";
 import useNavMenu from "../hooks/useNavMenu";
 import DrawerNavMobile from "./DrawerNavMobile";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useState } from "react";
 
 const Navigation = () => {
   const { auth } = useAuth();
   const { toggleDrawer, navMenu } = useNavMenu();
+  const [profileMenuNav, setProfileMenuNav] = useState<null | HTMLElement>(
+    null
+  );
   const tm = useTheme();
   const mobileSize = useMediaQuery("(min-width:600px)");
+  const handleOpenProfileMenu = (e: React.MouseEvent<HTMLElement>) => {
+    setProfileMenuNav(e.currentTarget);
+  };
+  const handleCloseProfileMenu = () => {
+    setProfileMenuNav(null);
+  };
 
   const sapphirePages: { link: string; pagename: string }[] = [
     {
@@ -40,7 +53,7 @@ const Navigation = () => {
 
   return (
     <>
-      <AppBar position="sticky" sx={{}}>
+      <AppBar position="sticky">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -110,18 +123,79 @@ const Navigation = () => {
 
             {auth?.tk ? (
               mobileSize ? (
-                <Button sx={{ color: "white" }}>
-                  {/* <Typography variant="subtitle1">{auth.name}</Typography> */}
-                  <IconButton>
-                    <Avatar alt={auth.name} src={auth.user_avatar} />
-                  </IconButton>
-                  {auth.name}
-                  <KeyboardArrowDownIcon />
-                </Button>
+                <Box sx={{ flexGrow: 0 }}>
+                  <Tooltip title="Open user menu">
+                    <Button
+                      sx={{ color: "white" }}
+                      onClick={handleOpenProfileMenu}
+                    >
+                      {/* <Typography variant="subtitle1">{auth.name}</Typography> */}
+                      <IconButton>
+                        <Avatar alt={auth.name} src={auth.user_avatar} />
+                      </IconButton>
+                      {auth.name}
+                      <KeyboardArrowDownIcon />
+                    </Button>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="profile-menu"
+                    anchorEl={profileMenuNav}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(profileMenuNav)}
+                    onClose={handleCloseProfileMenu}
+                  >
+                    {sapphirePages.map((e) => {
+                      return (
+                        <MenuItem key={e.pagename}>
+                          <Typography sx={{ textAlign: "center" }}>
+                            {e.pagename}
+                          </Typography>
+                        </MenuItem>
+                      );
+                    })}
+                  </Menu>
+                </Box>
               ) : (
-                <IconButton>
-                  <Avatar alt={auth.name} src={auth.user_avatar} />
-                </IconButton>
+                <Box>
+                  <Tooltip title="Open Profile Menu">
+                    <IconButton onClick={handleOpenProfileMenu}>
+                      <Avatar alt={auth.name} src={auth.user_avatar} />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    id="profile-menu-mobile"
+                    anchorEl={profileMenuNav}
+                    sx={{ mt: "45px", display: "block" }}
+                    open={Boolean(profileMenuNav)}
+                    onClose={handleCloseProfileMenu}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                  >
+                    {sapphirePages.map((e) => {
+                      return (
+                        <MenuItem key={e.pagename}>
+                          <Typography>{e.pagename}</Typography>
+                        </MenuItem>
+                      );
+                    })}
+                  </Menu>
+                </Box>
               )
             ) : (
               <NavLink to="/login">
